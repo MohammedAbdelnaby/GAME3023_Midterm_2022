@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Item item = null;
+    private CraftingManager ICraftingManager;
 
     [SerializeField]
     private TMPro.TextMeshProUGUI descriptionText;
@@ -37,6 +38,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // Start is called before the first frame update
     void Start()
     {
+        ICraftingManager = GameObject.FindObjectOfType<CraftingManager>();
         UpdateGraphic();
     }
 
@@ -63,7 +65,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (CanUseItem())
         {
-            item.Use();
+            ICraftingManager.Add(item);
             if (item.isConsumable)
             {
                 Count--;

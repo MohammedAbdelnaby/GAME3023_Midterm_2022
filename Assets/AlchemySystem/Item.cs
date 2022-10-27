@@ -9,7 +9,6 @@ public class Item : ScriptableObject //Extending SO allows us to have an object 
     public Sprite icon;
     public string description = "";
     public bool isConsumable = false;
-
     public void Use()
     {
         Debug.Log("Used item: " + name + " - " + description);
@@ -22,6 +21,6 @@ public class Item : ScriptableObject //Extending SO allows us to have an object 
     public int Sta = 0;
     public int Healing = 0;
     public int Health = 0;
-    public int ManaGain = 0;
+    public int ManaRegen = 0;
     public int Mana = 0;
 }
