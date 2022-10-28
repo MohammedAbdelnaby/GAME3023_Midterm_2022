@@ -9,6 +9,7 @@ public class CraftingSlot : MonoBehaviour
 {
     public Item item = null;
     private CraftingManager ICraftingManager;
+    private PlayersMouse IPlayerMouse;
 
     [SerializeField]
     private TMPro.TextMeshProUGUI descriptionText;
@@ -22,6 +23,7 @@ public class CraftingSlot : MonoBehaviour
     void Start()
     {
         ICraftingManager = GameObject.FindObjectOfType<CraftingManager>();
+        IPlayerMouse = GameObject.FindObjectOfType<PlayersMouse>();
         UpdateGraphic();
     }
 
@@ -30,13 +32,13 @@ public class CraftingSlot : MonoBehaviour
     {
         if (item == null)
         {
-            itemIcon.gameObject.SetActive(false);
+            itemIcon.color = new Color(itemIcon.color.r, itemIcon.color.g, itemIcon.color.b, 0.0f);
         }
         else
         {
             //set sprite to the one from the item
+            itemIcon.color = new Color(itemIcon.color.r, itemIcon.color.g, itemIcon.color.b, 1.0f);
             itemIcon.sprite = item.icon;
-            itemIcon.gameObject.SetActive(true);
         }
     }
 
@@ -47,6 +49,27 @@ public class CraftingSlot : MonoBehaviour
             item = null;
             UpdateGraphic();
         }
+    }
+
+    public void AddItemToSlot()
+    {
+        if (item == null)
+        {
+            item = IPlayerMouse.item;
+            IPlayerMouse.item = null;
+            IPlayerMouse.ChangeAlpha(0.0f);
+        }
+        else
+        {
+            if (IPlayerMouse.item == null)
+            {
+                IPlayerMouse.item = item;
+                item = null;
+                IPlayerMouse.ChangeAlpha(0.5f);
+            }
+        }
+        UpdateGraphic();
+        ICraftingManager.UpdateCraftingList();
     }
 
     private bool CanUseItem()

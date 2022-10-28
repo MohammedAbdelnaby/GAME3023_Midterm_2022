@@ -28,5 +28,12 @@ public class CraftingManager : MonoBehaviour
             }
         }
     }
+    public void UpdateCraftingList()
+    {
+        for (int i = 0; i < CraftingSlots.Count; i++)
+        {
+            CraftingItems[i] = CraftingSlots[i].item;
+        }
+    }
 
 }

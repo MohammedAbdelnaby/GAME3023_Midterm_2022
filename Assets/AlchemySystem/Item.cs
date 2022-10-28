@@ -9,6 +9,8 @@ public class Item : ScriptableObject //Extending SO allows us to have an object 
     public Sprite icon;
     public string description = "";
     public bool isConsumable = false;
+    public Statues statue;
+    public Rarity rarity;
     public void Use()
     {
         Debug.Log("Used item: " + name + " - " + description);

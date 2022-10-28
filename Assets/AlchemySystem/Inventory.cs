@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+ * TO DO:
+ * make a take back item
+ * stop the user from over using items
+ */
 public class Inventory : MonoBehaviour
 {
     List<ItemSlot> itemSlots = new List<ItemSlot>();

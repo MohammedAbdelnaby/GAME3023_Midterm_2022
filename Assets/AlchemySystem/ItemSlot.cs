@@ -11,6 +11,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Item item = null;
     private CraftingManager ICraftingManager;
+    private PlayersMouse IPlayerMouse;
 
     [SerializeField]
     private TMPro.TextMeshProUGUI descriptionText;
@@ -39,6 +40,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Start()
     {
         ICraftingManager = GameObject.FindObjectOfType<CraftingManager>();
+        IPlayerMouse = GameObject.FindObjectOfType<PlayersMouse>();
         UpdateGraphic();
     }
 
@@ -48,14 +50,14 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (count < 1)
         {
             item = null;
-            itemIcon.gameObject.SetActive(false);
+            itemIcon.color = new Color(itemIcon.color.r, itemIcon.color.g, itemIcon.color.b, 0.0f);
             itemCountText.gameObject.SetActive(false);
         }
         else
         {
             //set sprite to the one from the item
             itemIcon.sprite = item.icon;
-            itemIcon.gameObject.SetActive(true);
+            itemIcon.color = new Color(itemIcon.color.r, itemIcon.color.g, itemIcon.color.b, 1.0f);
             itemCountText.gameObject.SetActive(true);
             itemCountText.text = count.ToString();
         }
@@ -63,14 +65,27 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void UseItemInSlot()
     {
-        if (CanUseItem())
+        if (IPlayerMouse.item == null)
         {
-            ICraftingManager.Add(item);
-            if (item.isConsumable)
+            if (CanUseItem())
             {
-                Count--;
+                IPlayerMouse.item = item;
+                IPlayerMouse.ChangeAlpha(0.5f);
+                count--;
             }
         }
+        else
+        {
+            if (item == IPlayerMouse.item || item == null)
+            {
+                item = IPlayerMouse.item;
+                IPlayerMouse.item = null;
+                IPlayerMouse.ChangeAlpha(0.0f);
+                count++;
+            }
+        }
+        UpdateGraphic();
+        ICraftingManager.UpdateCraftingList();
     }
 
     private bool CanUseItem()
