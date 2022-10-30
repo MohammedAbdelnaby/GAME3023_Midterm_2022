@@ -10,18 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8290b75b2cbd6af45b7ad408c0444bf8, type: 3}
-  m_Name: Aurum
+  m_Name: Clover
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 85c8c026991b4404ebe5bacaed13d132, type: 3}
-  description: The element known as Ag. Or was it Ab? or Ae? Anyway it is shiny and
-    valuable
-  isConsumable: 1
-  Str: 0
-  Dex: 0
-  Int: 2
-  Def: 0
-  Sta: 0
+  icon: {fileID: 21300000, guid: 720a7d9f64013ef41acc4c5f46c1280f, type: 3}
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  description: An ordinary clover. Not particularly lucky, but not unlucky either
+  isConsumable: 0
+  isCraftingIngredient: 1
+  statue: 0
+  rarity: 3
+  Str: 1
+  Dex: 1
+  Int: 1
+  Def: 1
+  Sta: 1
   Healing: 0
   Health: 0
-  ManaGain: 0
+  ManaRegen: 0
   Mana: 0

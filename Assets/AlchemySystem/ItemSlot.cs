@@ -65,27 +65,24 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void UseItemInSlot()
     {
-        if (IPlayerMouse.item == null)
+        if (IPlayerMouse.Item == null)
         {
             if (CanUseItem())
             {
-                IPlayerMouse.item = item;
-                IPlayerMouse.ChangeAlpha(0.5f);
+                IPlayerMouse.Item = item;
                 count--;
             }
         }
         else
         {
-            if (item == IPlayerMouse.item || item == null)
+            if (item == IPlayerMouse.Item || item == null)
             {
-                item = IPlayerMouse.item;
-                IPlayerMouse.item = null;
-                IPlayerMouse.ChangeAlpha(0.0f);
+                item = IPlayerMouse.Item;
+                IPlayerMouse.Item = null;
                 count++;
             }
         }
         UpdateGraphic();
-        ICraftingManager.UpdateCraftingList();
     }
 
     private bool CanUseItem()

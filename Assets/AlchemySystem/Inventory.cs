@@ -5,8 +5,8 @@ using UnityEngine;
 
 /*
  * TO DO:
- * make a take back item
- * stop the user from over using items
+ * make crafting recipes 
+ * and easy to mae recipes for devs
  */
 public class Inventory : MonoBehaviour
 {

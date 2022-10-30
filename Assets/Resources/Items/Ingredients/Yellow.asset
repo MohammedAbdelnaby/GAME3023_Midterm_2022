@@ -13,6 +13,25 @@ MonoBehaviour:
   m_Name: Yellow
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f836d41b5ee76504c9aead50abef9104, type: 3}
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   description: A Yellow is an exotic fruit rich in potassium. It was named so by
     the same person who named the Orange.
-  isConsumable: 1
+  isConsumable: 0
+  isCraftingIngredient: 1
+  statue: 2
+  rarity: 5
+  Str: 0
+  Dex: 0
+  Int: 0
+  Def: 0
+  Sta: 0
+  Healing: 2
+  Health: 1
+  ManaRegen: 0
+  Mana: 0

@@ -5,9 +5,12 @@ using UnityEngine.UI;
 [System.Serializable]
 public class PlayersMouse : MonoBehaviour
 {
-    public Item item = null;
+    private Item item = null;
     [SerializeField]
     private Image image;
+
+    public Item Item { get => item; set => item = value; }
+
     private void Start()
     {
         image.sprite = null;
@@ -16,6 +19,7 @@ public class PlayersMouse : MonoBehaviour
     void Update()
     {
         ItemOnPointer();
+        ChangeAlpha();
     }
     private void ItemOnPointer()
     {
@@ -31,8 +35,15 @@ public class PlayersMouse : MonoBehaviour
     }
 
 
-    public void ChangeAlpha(float value)
+    public void ChangeAlpha()
     {
-        image.color = new Color(image.color.r, image.color.g, image.color.b, value);
+        if (item == null)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0.0f);
+        }
+        else
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0.5f);
+        }
     }
 }

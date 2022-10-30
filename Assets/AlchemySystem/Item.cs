@@ -7,11 +7,13 @@ using UnityEngine;
 public class Item : ScriptableObject //Extending SO allows us to have an object which exists in the project, not in the scene
 {
     public Sprite icon;
+    public Item[] Ingredients;
     public string description = "";
     public bool isConsumable = false;
+    public bool isCraftingIngredient = false;
     public Statues statue;
     public Rarity rarity;
-    public void Use()
+    public void Use()       
     {
         Debug.Log("Used item: " + name + " - " + description);
     }

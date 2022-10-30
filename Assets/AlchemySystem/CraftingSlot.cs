@@ -28,7 +28,7 @@ public class CraftingSlot : MonoBehaviour
     }
 
     //Change Icon and count
-    void UpdateGraphic()
+    public void UpdateGraphic()
     {
         if (item == null)
         {
@@ -55,17 +55,15 @@ public class CraftingSlot : MonoBehaviour
     {
         if (item == null)
         {
-            item = IPlayerMouse.item;
-            IPlayerMouse.item = null;
-            IPlayerMouse.ChangeAlpha(0.0f);
+            item = IPlayerMouse.Item;
+            IPlayerMouse.Item = null;
         }
         else
         {
-            if (IPlayerMouse.item == null)
+            if (IPlayerMouse.Item == null)
             {
-                IPlayerMouse.item = item;
+                IPlayerMouse.Item = item;
                 item = null;
-                IPlayerMouse.ChangeAlpha(0.5f);
             }
         }
         UpdateGraphic();
