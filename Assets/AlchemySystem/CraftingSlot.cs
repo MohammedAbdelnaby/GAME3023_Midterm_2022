@@ -46,6 +46,7 @@ public class CraftingSlot : MonoBehaviour
     {
         if (item != null)
         {
+            ICraftingManager.CraftingItems.Remove(item);
             item = null;
             UpdateGraphic();
         }
@@ -53,54 +54,18 @@ public class CraftingSlot : MonoBehaviour
 
     public void AddItemToSlot()
     {
-        if (item == null)
+        if (item == null && IPlayerMouse.Item != null && IPlayerMouse.Item.isCraftingIngredient)
         {
             item = IPlayerMouse.Item;
+            ICraftingManager.CraftingItems.Add(item);
             IPlayerMouse.Item = null;
         }
-        else
+        else if (IPlayerMouse.Item == null)
         {
-            if (IPlayerMouse.Item == null)
-            {
-                IPlayerMouse.Item = item;
-                item = null;
-            }
+            IPlayerMouse.Item = item;
+            ICraftingManager.CraftingItems.Remove(item);
+            item = null;
         }
         UpdateGraphic();
-        ICraftingManager.UpdateCraftingList();
-    }
-
-    private bool CanUseItem()
-    {
-        return (item != null);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (item != null)
-        {
-            descriptionText.text = item.description;
-            nameText.text = item.name;
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (item != null)
-        {
-            descriptionText.text = "";
-            nameText.text = "";
-        }
-    }
-
-    public bool AddItem(Item Pitem)
-    {
-        if (item != null)
-        {
-            return false;
-        }
-        item = Pitem;
-        UpdateGraphic();
-        return true;
     }
 }

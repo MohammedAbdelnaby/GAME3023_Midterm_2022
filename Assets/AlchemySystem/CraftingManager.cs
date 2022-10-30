@@ -9,9 +9,11 @@ public class CraftingManager : MonoBehaviour
     public List<Item> CraftingItems;
     public List<CraftingSlot> CraftingSlots;
     private PlayersMouse IPlayerMouse;
+    private Item[] CraftableItems;
     // Update is called once per frame
     void Start()
     {
+        CraftableItems = Resources.LoadAll<Item>("Items/Craftables");
         IPlayerMouse = GameObject.FindObjectOfType<PlayersMouse>();
         foreach (CraftingSlot item in GameObject.FindObjectsOfType<CraftingSlot>())
         {
@@ -19,38 +21,19 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    public void Add(Item item)
-    {
-        for (int i = 0; i < CraftingSlots.Count; i++)
-        {
-            if (CraftingSlots[i].AddItem(item))
-            {
-                return;
-            }
-        }
-    }
-    public void UpdateCraftingList()
-    {
-        for (int i = 0; i < CraftingSlots.Count; i++)
-        {
-            CraftingItems[i] = CraftingSlots[i].item;
-        }
-    }
-
     private void ResetCraftingSlots()
     {
-        for (int i = 0; i < CraftingItems.Count; i++)
+        for (int i = 0; i < CraftingSlots.Count; i++)
         {
             CraftingSlots[i].DeleteItemInSlot();
         }
-        UpdateCraftingList();
     }
-
     public void Craft()
     {
-        Item[] CraftableItems = Resources.LoadAll<Item>("Items/Craftables");
         foreach (Item CItems in CraftableItems)
         {
+            if (CraftingItems.Count != CItems.Ingredients.Length)
+                continue;
             int count = 0;
             foreach (Item IItem in CraftingItems)
             {
